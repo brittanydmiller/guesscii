@@ -1,6 +1,3 @@
-##Future: Clear screen, move to home
-require 'curses'
-
 class View
 
   def self.welcome
@@ -78,6 +75,10 @@ class View
   def self.move_to_home!
     print "\e[H"
   end
+
+  # def self.score
+  #   puts "Your score is: #{game.score}"
+  # end
 
 end
 
