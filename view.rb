@@ -3,18 +3,22 @@
 class View
 
   def self.welcome
+    clear_screen!
+    move_to_home!
     puts "Welcome to Guesscii\nPress 'Enter' to continue"
   end
 
-  def self.image_piece(parser, line = 0)
-    counter = line
-    increment = parser.lines / 5
+  def self.image_piece(parser, guess_count, max_guesses)
+    clear_screen!
+    move_to_home!
 
-    increment.times do
-      puts parser.picture[counter]
-      counter += 1
+    line_number = 0
+    increment = parser.lines / max_guesses
+
+    parser.picture.each_with_index do |line, index|
+      puts line if index <= increment*guess_count
     end
-    counter
+
   end
 
   def self.get_input
@@ -23,6 +27,16 @@ class View
 
   def self.win
     puts "You WON!!!!!!"
+  end
+
+  # Clear the screen
+  def self.clear_screen!
+    print "\e[2J"
+  end
+
+  # Moves cursor to the top left of the terminal
+  def self.move_to_home!
+    print "\e[H"
   end
 
 end

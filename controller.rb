@@ -16,8 +16,11 @@ require_relative 'game'
 
 
 class Controller
+  attr_reader :max_guesses
 
   def initialize
+    @guess_count = 1
+    @max_guesses = 5
     View.welcome
     run_game
   end
@@ -35,13 +38,13 @@ class Controller
     @parser = PictureManager.new(@picture.location)
   end
 
-  def play_game(next_line = 0)
-    next_line = View.image_piece(@parser, next_line)
+  def play_game
+    View.image_piece(@parser, @guess_count, @max_guesses)
     guess = get_user_guess
     if check_user_response(guess)
       View.win
     else
-      play_game(next_line) unless picture_complete?(next_line)
+      play_game unless @guess_count > @max_guesses + 1
     end
   end
 
@@ -50,12 +53,15 @@ class Controller
   end
 
   def get_user_guess
+    @guess_count += 1
     View.get_input
   end
 
   def check_user_response(guess)
     @game.check_answer(guess)
   end
+
+
 
 end
 
