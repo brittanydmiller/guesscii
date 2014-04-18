@@ -1,3 +1,4 @@
+require 'paint'
 
 class View
 
@@ -10,24 +11,24 @@ class View
     puts "Press 1 to play game".center(75)
     puts "Press 2 for instructions".center(75)
     puts "Press 3 for game info".center(75)
+    puts "Press 4 to exit".center(75)
   end
 
   def self.instructions
     setup_screen
-    puts "Geusscii will show you lines of an ASCII based picture".center(100)
-    puts "Try to guess what the pictures is!".center(100)
-    puts "If you don't guess the correct answer, more of the picture will be revealed.".center(100)
+    puts "Guesscii will show you lines of an ASCII based picture".center(75)
+    puts "Try to guess what the pictures is!".center(75)
+    puts "If you don't guess the correct answer, more of the picture will be revealed.".center(75)
   end
 
   def self.game_info
     setup_screen
-    puts "Guescii.\n".center(100)
-    puts "Created by:\n".center(100)
-    puts "".ljust(40)+"Andrew Fruth".ljust(70)
-    puts "".ljust(40)+"Mia Garbagnati".ljust(70)
-    puts "".ljust(40)+"Brittany Miller".ljust(70)
-    puts "".ljust(40)+"David Schaaf".ljust(70)
-
+    puts "Guescii.\n".center(75)
+    puts "Created by:\n".center(75)
+    puts "".ljust(30)+"Andrew Fruth".ljust(70)
+    puts "".ljust(30)+"Mia Garbagnati".ljust(70)
+    puts "".ljust(30)+"Brittany Miller".ljust(70)
+    puts "".ljust(30)+"David Schaaf".ljust(70)
   end
 
   def self.setup_screen
@@ -43,7 +44,7 @@ class View
     increment = parser.lines / max_guesses
 
     parser.picture.each_with_index do |line, index|
-      print ''.ljust(20)+line if index <= increment*guess_count
+      print ''.ljust(20)+Paint[line, :random] if index <= increment*guess_count
     end
   end
 
@@ -98,7 +99,8 @@ class View
     View.total_score(score)
   end
 
+  def self.enter
+    puts "\n Press Enter to return to menu".center(75)
 
+  end
 end
-
-
