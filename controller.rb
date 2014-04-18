@@ -26,9 +26,14 @@ class Controller
   end
 
   def run_game
-    if View.get_input != "exit"
-      setup_game(1)
-      play_game
+    case View.get_input.to_i
+      when 1
+        setup_game(1)
+        play_game
+      when 2
+        View.instructions
+      when 3
+        View.game_info
     end
   end
 
@@ -42,9 +47,11 @@ class Controller
     View.image_piece(@parser, @guess_count, @max_guesses)
     guess = get_user_guess
     if check_user_response(guess)
-      View.win
+      View.win(@parser, @max_guesses)
+    elsif @guess_count > @max_guesses + 1
+      View.lose(@parser, @max_guesses, @picture.answer)
     else
-      play_game unless @guess_count > @max_guesses + 1
+      play_game
     end
   end
 
