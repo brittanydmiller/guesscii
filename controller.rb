@@ -16,13 +16,14 @@ require_relative 'game'
 
 
 class Controller
-  attr_reader :max_guesses
+  attr_reader :max_guesses, :game
 
   def initialize
     @guess_count = 1
     @max_guesses = 5
     View.welcome
     run_game
+    # @total_score = 0
   end
 
   def run_game
@@ -43,8 +44,21 @@ class Controller
     guess = get_user_guess
     if check_user_response(guess)
       View.win
+      # View.score
+      # @total_score += @game.score
+      puts "Your score for this round is: #{@game.score}" # figure out how to get this in view
+      # puts "Your total score is: #{@total_score}"
+      # View Score
     else
-      play_game unless @guess_count > @max_guesses + 1
+      @game.reduce_score
+      #Reduce Score  if guess_count == 6 View.Score
+      if @game.score == 0
+        puts "Your score for this round is: #{@game.score}"
+      else
+        play_game
+      end
+      # play_game unless @game.score == 0
+      # puts "Your score for this round is: #{@game.score}" #@guess_count > @max_guesses + 1
     end
   end
 
@@ -88,8 +102,8 @@ controller = Controller.new
 #   # end
 
 #   def show_more
-#     while @counter <= @stop
 #       puts @picture[@counter]
+#     while @counter <= @stop
 #       @counter += 1
 #     end
 #     @counter = @stop + 1
