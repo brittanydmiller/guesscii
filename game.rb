@@ -1,15 +1,12 @@
+require_relative 'picture_manager'
+
 class Game
 
   attr_reader :correct, :user_input, :output
 
-  def initialize
-    @user_input = ''
-    @picture = []
-    @counter = 0
-    @increment = @picture.length/5
-    @output = []
-    @stop = @increment
-    @answer = 'panda'
+
+  def initialize(answer)
+    @answer = answer
     @correct = false
   end
 
@@ -28,14 +25,4 @@ class Game
     @correct = (@user_input == @answer)
   end
 
-  def get_user_input
-    @user_input = gets.chomp
-  end
-
-  def show_win
-    puts "You WON!!!!!!"
-  end
-
 end
-
-
