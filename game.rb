@@ -54,19 +54,17 @@ game = Game.new
 panda = PictureDisplay.new('panda.txt')
 
 puts "Welcome to Guesscii"
-p game.correct
-
 
 panda.show_more
 game.get_user_input
 game.check_answer
-p game.correct
+game.correct
 
 while game.correct == false
   panda.show_more
   game.get_user_input
   game.check_answer
-  p game.correct
-  p game.user_input
+  game.correct
+  game.user_input
 end
   game.show_win
