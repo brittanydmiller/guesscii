@@ -12,7 +12,7 @@ class PictureImporter
       picture_data = []
       picture = PictureManager.new(file)
       picture_data << picture.answer
-      picture_data << "#{path}/#{picture.filename}"
+      picture_data << "#{picture.filename}"
       picture_data << picture.lines
       Picture.create!(Hash[columns.zip(picture_data)])
     end

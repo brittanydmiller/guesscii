@@ -9,6 +9,8 @@
   # if win, show whole picture
 # if user input != the answer, continue guessing  -ask you for user input
   # if you see all picture, but have not yet guessed it, then say nice try.  YOU ARE GREAT AND SPECIAL!!!!KK!K!!!
+require_relative 'db/config'
+require_relative 'db/picture_importer'
 require_relative 'view'
 require_relative 'game'
 
@@ -20,22 +22,39 @@ class Controller
     run_game
   end
 
-  def get_input
-    gets.chomp
-  end
-
   def run_game
-    if get_input != "exit"
+    if View.get_input != "exit"
+      setup_game(1)
       play_game
     end
   end
 
-  def play_game
-    # get_image_lines
-    game = Game.new
-    image_piece = game.calc_image_lines
-    View.image_piece(output)
+  def setup_game(index)
+    @picture = Picture.find(index)
+    @game = Game.new(@picture.answer)
+    @parser = PictureManager.new(@picture.location)
+  end
 
+  def play_game(next_line = 0)
+    next_line = View.image_piece(@parser, next_line)
+    guess = get_user_guess
+    if check_user_response(guess)
+      View.win
+    else
+      play_game(next_line) unless picture_complete?(next_line)
+    end
+  end
+
+  def picture_complete?(line)
+    @picture.lines <= line
+  end
+
+  def get_user_guess
+    View.get_input
+  end
+
+  def check_user_response(guess)
+    @game.check_answer(guess)
   end
 
 end
@@ -127,8 +146,6 @@ controller = Controller.new
 #     @user_input = gets.chomp
 #   end
 
-#   def show_win
-#     puts "You WON!!!!!!"
-#   end
+
 
 # end
