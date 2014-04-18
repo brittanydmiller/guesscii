@@ -33,7 +33,7 @@
    ,ooO:8O'       ,d8888o:O'                          dOo   ;:.
    ;O8odo'        88888O:o'                          do::  oo.:
   d"`)8O'         "YO88Oo'                          "8O:   o8b'
- ''-'`"            d:O8oK  -hrr-                   dOOo'  :o":
+ ''-'`"            d:O8oK                          dOOo'  :o":
                    O:8o:b.                        :88o:   `8:,
                    `8O:;7b,.                       `"8'     Y:
                     `YO;`8b'

@@ -1,12 +1,15 @@
+
 class View
 
-  def self.welcome
+  def self.welcome(logo, max_guesses)
     setup_screen
-    puts "Welcome to Guesscii\n".center(100)
+    View.show_full_image(logo, max_guesses)
     puts
-    puts "Press 1 to play game".center(100)
-    puts "Press 2 for instructions".center(100)
-    puts "Pres 3 for game info".center(100)
+    puts
+    puts
+    puts "Press 1 to play game".center(75)
+    puts "Press 2 for instructions".center(75)
+    puts "Press 3 for game info".center(75)
   end
 
   def self.instructions
@@ -34,7 +37,6 @@ class View
     puts
   end
 
-
   def self.image_piece(parser, guess_count, max_guesses)
     setup_screen
 
@@ -58,27 +60,44 @@ class View
     show_full_image(parser, max_guesses)
     puts
     puts "You WON!!!!!!".center(100)
+    puts
+    puts
   end
 
   def self.lose(parser, max_guesses, answer)
     show_full_image(parser, max_guesses)
     puts
     puts "Sorry. The answer was '#{answer}.'".center(100)
+    sleep(3)
   end
 
-  # Clear the screen
   def self.clear_screen!
     print "\e[2J"
   end
 
-  # Moves cursor to the top left of the terminal
   def self.move_to_home!
     print "\e[H"
   end
 
-  # def self.score
-  #   puts "Your score is: #{game.score}"
-  # end
+  def self.score(score)
+    puts "Your score for this round is: #{score}".center(75)
+  end
+
+  def self.total_score(score)
+    puts "Your total score is: #{score}".center(75)
+    sleep(2)
+  end
+
+  def self.game_over(logo, max_guesses, score)
+    setup_screen
+    View.show_full_image(logo, max_guesses)
+    puts
+    puts
+    puts "Thanks for playing!".center(75)
+    puts
+    View.total_score(score)
+  end
+
 
 end
 
