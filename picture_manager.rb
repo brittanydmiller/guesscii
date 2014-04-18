@@ -6,7 +6,7 @@ class PictureManager
     @filename = filename
     @picture = []
     file_open
-    @answer = @picture.shift
+    @answer = @picture.shift.chomp.gsub("'", "")
     @lines = @picture.length
   end
 
