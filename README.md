@@ -5,7 +5,7 @@ guesscii is an ASCII art guessing game played in the console. The user gets to v
 
 Made as a Phase 1 project for Dev Bootcamp by:
 
-Mia Garbagnati
-Brittany Miller
-Dave Schaaf
-Andrew Fruth
+* Mia Garbagnati
+* Brittany Miller
+* Dave Schaaf
+* Andrew Fruth
